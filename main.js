@@ -3,7 +3,7 @@
 const MODEL_FILENAME = 'models/car.obj';
 
 const FPS = 60;
-const SPIN_SPEED = 1.5;
+const SPIN_SPEED = 1.2;
 const BG_COLOR = "Black";
 const FG_COLOR = "White";
 const Z_OFFSET = 8;
