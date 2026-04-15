@@ -6,6 +6,7 @@ const FPS = 60;
 const BG_COLOR = "Black";
 const FG_COLOR = "White";
 
+let should_stop = false;
 let spin_speed = 1.2;
 
 offset = {
@@ -14,6 +15,7 @@ offset = {
   z: 8
 }
 
+const viewport = document.querySelector("#viewport");
 viewport.width = 800;
 viewport.height = 800;
 
@@ -111,10 +113,20 @@ const cube = {
   ]
 }
 
-async function init() {
+document.querySelectorAll('button').forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    should_stop = true;
+    console.log(e.target.id);
+    init('models/' + e.target.id +'.obj');
+  });
+});
+
+async function init(model_name) {
+  // sleep :DDDDDDD
+  await new Promise(r => setTimeout(r, 100));
   let model;
   try {
-    model = await loadOBJ(MODEL_FILENAME);
+    model = await loadOBJ(model_name);
   } catch (err) {
     model = cube;
   }
@@ -128,6 +140,7 @@ async function init() {
 let t = 0;
 
 function main(model) {
+  should_stop = false;
 
   function frame() {
     const dt = 1/FPS;
@@ -142,7 +155,6 @@ function main(model) {
       y: Math.cos(t) + offset.y,
       z: offset.z
     }
-    // console.log('pos z:', model.pos.z);
 
     model.angle.y += spin_speed * dt;
 
@@ -164,9 +176,11 @@ function main(model) {
     }
     offset = pollInputs();
     spin_speed = offset.spin;
-    setTimeout(frame, 1000/FPS);
+
+    if (!should_stop) 
+      setTimeout(frame, 1000/FPS);
   }
   setTimeout(frame, 1000/FPS);
 }
 
-init();
+init(MODEL_FILENAME);

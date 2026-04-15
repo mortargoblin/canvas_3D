@@ -3,40 +3,73 @@
 <html>
 
 <head>
+<title>Canvas 3D</title>
 <script src="obj.js"> </script>
-<script defer src="input.js"> </script>
 <script defer src="main.js"> </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
 <style>
 body {
   background-color: black;
   color: white;
 }
-#container {
+a {
+  color: white;
+  text-align: center;
+}
+.container {
   display: flex;
+  justify-content: center;
   align-items: center;
+}
+@media (max-width: 964px) {
+  .container {
+    flex-direction: column;
+  }
+  #viewport {
+    width: 100vw;
+  }
+}
+.slider-container {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#viewport {
+  height: auto;
+  max-width: 800px;
+  aspect-ratio: 1 / 1;
 }
 </style>
 </head>
 
 <body>
-  <div id="container">
+  <div class="container">
     <canvas id="viewport"></canvas>
-    <div>
-      <input type="range" id="xSlider" name="x" min="-10" max="10" orient="vertical" />
-      <label for="x">x</label>
-    </div>
-    <div>
-      <input type="range" id="ySlider" name="y" min="-10" max="10" orient="vertical" />
-      <label for="y">y</label>
-    </div>
-    <div>
-      <input type="range" id="zSlider" name="z" min="0" max="20" orient="vertical"/>
-      <label for="z">z</label>
-    </div>
-    <div>
-      <input type="range" id="spinSlider" name="spin" min="-20" max="20" value="2" orient="vertical"/>
-      <label for="spin">spin</label>
+    <div class="slider-container">
+      <div>
+        <input type="range" id="xSlider" name="x" min="-10" max="10" />
+        <label for="x">x</label>
+      </div>
+      <div>
+        <input type="range" id="ySlider" name="y" min="-10" max="10" />
+        <label for="y">y</label>
+      </div>
+      <div>
+        <input type="range" id="zSlider" name="z" min="0" max="20" />
+        <label for="z">z</label>
+      </div>
+      <div>
+        <input type="range" id="spinSlider" name="spin" min="-20" max="20" value="2" />
+        <label for="spin">spin</label>
+      </div>
+      <br>
+      <button id="car">Car</button>
+      <button id="house">House</button>
+      <button id="mortar">Mortar</button>
+      <br>
+      <a href="https://github.com/mortargoblin/canvas_3D">github</a>
     </div>
   </div>
 </body>
