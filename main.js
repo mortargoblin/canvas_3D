@@ -3,10 +3,16 @@
 const MODEL_FILENAME = 'models/car.obj';
 
 const FPS = 60;
-const SPIN_SPEED = 1.2;
 const BG_COLOR = "Black";
 const FG_COLOR = "White";
-const Z_OFFSET = 8;
+
+let spin_speed = 1.2;
+
+offset = {
+  x: 0,
+  y: 0,
+  z: 8
+}
 
 viewport.width = 800;
 viewport.height = 800;
@@ -75,6 +81,15 @@ function line(p1, p2) {
   ctx.stroke();
 }
 
+function pollInputs() {
+  return {
+    x: Number(xSlider.value),
+    y: Number(ySlider.value),
+    z: Number(zSlider.value),
+    spin: Number(spinSlider.value)
+  }
+}
+
 const cube = {
   va: [ 
     {x:  1.5, y:  1.5, z:  1.5},
@@ -105,7 +120,7 @@ async function init() {
   }
   console.log('model:', model);
   model.angle = {x: 0, y: 0, z: 0};
-  model.pos = {x: 0, y: 0, z: Z_OFFSET};
+  model.pos = {x: 0, y: 0, z: offset.z};
 
   main(model);
 }
@@ -123,12 +138,13 @@ function main(model) {
     // fun zone
 
     model.pos = {
-      x: Math.sin(t),
-      y: Math.cos(t),
-      z: Z_OFFSET
+      x: Math.sin(t) + offset.x,
+      y: Math.cos(t) + offset.y,
+      z: offset.z
     }
+    // console.log('pos z:', model.pos.z);
 
-    model.angle.y += SPIN_SPEED * dt;
+    model.angle.y += spin_speed * dt;
 
     // eof (end of fun zone)
 
@@ -146,6 +162,8 @@ function main(model) {
         );
       }
     }
+    offset = pollInputs();
+    spin_speed = offset.spin;
     setTimeout(frame, 1000/FPS);
   }
   setTimeout(frame, 1000/FPS);

@@ -4,19 +4,41 @@
 
 <head>
 <script src="obj.js"> </script>
+<script defer src="input.js"> </script>
 <script defer src="main.js"> </script>
 
 <style>
 body {
   background-color: black;
   color: white;
-  text-align: center;
+}
+#container {
+  display: flex;
+  align-items: center;
 }
 </style>
 </head>
 
 <body>
-  <canvas id="viewport"></canvas>
+  <div id="container">
+    <canvas id="viewport"></canvas>
+    <div>
+      <input type="range" id="xSlider" name="x" min="-10" max="10" orient="vertical" />
+      <label for="x">x</label>
+    </div>
+    <div>
+      <input type="range" id="ySlider" name="y" min="-10" max="10" orient="vertical" />
+      <label for="y">y</label>
+    </div>
+    <div>
+      <input type="range" id="zSlider" name="z" min="0" max="20" orient="vertical"/>
+      <label for="z">z</label>
+    </div>
+    <div>
+      <input type="range" id="spinSlider" name="spin" min="-20" max="20" value="2" orient="vertical"/>
+      <label for="spin">spin</label>
+    </div>
+  </div>
 </body>
 
 </html>
