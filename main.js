@@ -1,5 +1,9 @@
+// shoutout tsodin
+
 const BG_COLOR = "Black";
 const FG_COLOR = "White";
+
+const Z_OFFSET = 3;
 
 game.width = 800;
 game.height = 800;
@@ -19,7 +23,6 @@ function point({x, y}) {
 }
 
 function screen(p) {
-  // -1..1 -> 0..w/h
   return {
     x: (p.x + 1)/2*game.width,
     y: (1 - (p.y + 1)/2)*game.height
@@ -43,7 +46,6 @@ function translate(va, pos) {
     });
   }
   return result;
-  // model.va = result;
 }
 
 function rotate_xz(va, angle) {
@@ -90,18 +92,29 @@ const cube = {
     [2, 6],
     [3, 7]
   ],
-  pos:   {x: 0, y: 0, z: 2},
+  pos:   {x: 0, y: 0, z: Z_OFFSET},
   angle: {x: 0, y: 0, z: 0}
 }
 
 const FPS = 60;
+let t = 0;
 
 function frame() {
   const dt = 1/FPS;
+  t += dt;
   const va = translate(rotate_xz(cube.va, cube.angle.y), cube.pos);
-  // cube.pos.z -= 0.4 * dt;
+
+  // fun zone
+  
+  cube.pos = {
+    x: Math.sin(t),
+    y: Math.tan(t),
+    z: Math.cos(t) + Z_OFFSET,
+  }
+
   cube.angle.y += 2*Math.PI*dt;
-  // console.log(cube.pos.z);
+
+  // eof (end of fun zone)
 
   clear();
   // for (const v of va) {
