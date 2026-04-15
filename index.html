@@ -12,6 +12,7 @@
 body {
   background-color: black;
   color: white;
+  font-family: Arial;
 }
 a {
   color: white;
@@ -20,6 +21,11 @@ a {
 .container {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+.slider-container > div {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 @media (max-width: 964px) {
@@ -49,20 +55,20 @@ a {
     <canvas id="viewport"></canvas>
     <div class="slider-container">
       <div>
-        <input type="range" id="xSlider" name="x" min="-10" max="10" />
         <label for="x">x</label>
+        <input type="range" id="xSlider" name="x" min="-10" max="10" step="0.1" />
       </div>
       <div>
-        <input type="range" id="ySlider" name="y" min="-10" max="10" />
         <label for="y">y</label>
+        <input type="range" id="ySlider" name="y" min="-10" max="10" step="0.1"/>
       </div>
       <div>
-        <input type="range" id="zSlider" name="z" min="0" max="20" />
         <label for="z">z</label>
+        <input type="range" id="zSlider" name="z" min="0" max="20" step="0.1"/>
       </div>
       <div>
-        <input type="range" id="spinSlider" name="spin" min="-20" max="20" value="2" />
         <label for="spin">spin</label>
+        <input type="range" id="spinSlider" name="spin" min="-20" max="20" step="0.1" value="2" />
       </div>
       <br>
       <button id="car">Car</button>
