@@ -41,6 +41,8 @@ function screen(p) {
 }
 
 function project({x, y, z}) {
+  if (z < 0)
+    return {x: 0, y: 0};
   return {
     x: x/z,
     y: y/z

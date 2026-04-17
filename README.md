@@ -1,7 +1,10 @@
 # canvas_3D
 
+![F-15](/img/F15.png)
 ![car](/img/car.png)
-![cube](/img/cube.png)
+
+Renders wireframes for 3D-models. Made with javascript.
+[hosted here](https://canvas-3d.netlify.app/)
 
 ## specs
 
@@ -9,7 +12,7 @@
 - supports obj loading
 - supports arbitrary model position and angle updates
 
-## how to use
+## self-hosting
 
 ### with obj loading
 
