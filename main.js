@@ -125,7 +125,7 @@ document.querySelectorAll('button').forEach((btn) => {
 
 async function init(model_name) {
   // sleep :DDDDDDD
-  await new Promise(r => setTimeout(r, 100));
+  await new Promise(r => setTimeout(r, 12));
   let model;
   try {
     model = await loadOBJ(model_name);
